@@ -60,10 +60,12 @@
                     <div class="row">
                         <div class="col-md-8">
                             <textarea id="send-message" class="form-control" ng-model="vm.chatInfo.userInput"
-                             auto-focus></textarea>
+                             auto-focus ng-keypress="$event.keyCode == 13 &&
+                                                vm.sendMessage(vm.chatInfo.userInput, $event)"></textarea>
                             <br/>
                             <input id="send-button" type="submit" ng-click="vm.sendMessage(vm.chatInfo.userInput)"
                                    class="btn btn-primary pull-right" value="Send">
+                            <span>{{event.keyCode}}</span>
                         </div>
                         <div class="col-md-4">
                             <div id="help">

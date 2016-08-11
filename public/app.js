@@ -30,12 +30,7 @@ function autoFocus() {
     return{
         restrict: 'A',
         link: function (scope, elem, attr, ctrl) {
-            console.log(attr);
-            // scope.$watch(attr.autoFocus,function (n, o) {
-            //     console.log(n);
-            //     console.log("焦点");
-                elem[0].focus();
-            // });
+            elem[0].focus();
         }
     }
 }
@@ -48,7 +43,6 @@ function mainCtrl($scope,chatUiServer) {
     vm.systemInfo = {};
 
     vm.chatInfo.messages = [];
-    // vm.textareaFocus = false;
 
     vm.socket = io.connect();
     vm.chatApp = new chatUiServer.ChatServer(vm.socket);
@@ -133,9 +127,9 @@ function mainCtrl($scope,chatUiServer) {
     };
 
     //用户发送信息
-    vm.sendMessage = function (userInput) {
-        // vm.textareaFocus = true;
+    vm.sendMessage = function (userInput, event) {
         vm.processUserInput(userInput);
+        event.preventDefault();
         return false;
     };
 
